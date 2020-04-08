@@ -1,2 +1,2 @@
 # pythonStuff
-Dumping stuff that I learn about Python here
+Dumping random python beginner projects here
