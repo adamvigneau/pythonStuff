@@ -1,19 +1,32 @@
-import statistics
-import pandas
+import random
 
-number = [0, 2, 4, 6, 8, 10, 12, 14, 16]  # Could generate this dynamically
-userInput = input("Guess an integer between 0 and 100:\n")
-checkArr = []
+testArr = []
+for i in range(10):  # Generate 10 random integers
+    testArr.append(random.randrange(0, 101))
+
+userInput = int(input("Guess an integer between 0 and 100:\n"))
 
 
-def is_middle(arr, number):
-    if number == statistics.median(arr):
-        return True
-    elif number.between(min(arr), statistics.median(arr)):
-        arr = [x for x in arr if x <= statistics.median(arr)]
-        return arr
-    elif number.between(statistics.median(arr), max(arr)):
-        arr = [x for x in arr if x > statistics.median(arr)]
-        return arr
-    else:
-        return False
+def binary_search(arr, x, y, num):
+    while x <= y:
+
+        med = x + (y - x) // 2
+
+        # Check if x is present at mid
+        if arr[med] == num:
+            return med
+
+        # If x is greater, ignore left half
+        elif arr[med] < num:
+            x = med + 1
+
+        # If x is smaller, ignore right half
+        else:
+            y = med - 1
+
+        # If we reach here, then the element was not present
+    return "Integer not present in array"
+
+
+result = binary_search(testArr, 0, len(testArr) - 1, userInput)
+print(result)
